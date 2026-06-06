@@ -13,7 +13,7 @@ class AlbumDataFrame(Frame):
     album_name: Entry
     album_date: Entry
     image_preview: Button
-    image: metadata.Image.ImageFile = None
+    image: Image = None
     thumbnail: PhotoImage = None
 
     def __init__(self, master=None):
