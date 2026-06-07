@@ -105,11 +105,11 @@ def get_track_data_from_filename(file_path: Path | str, index: int = 1) -> Track
         length = float(json_result["format"]["duration"])
         tags = json_result["format"]["tags"]
     except IndexError:
-        return None
+        pass
     except KeyError:
-        return None
+        pass
     except json.JSONDecodeError:
-        return None
+        pass
 
     for tag in ["artist", "albumartist", "author", "Albumartist", "Artist", "AlbumArtist", "Author"]:
         if tag in tags:
