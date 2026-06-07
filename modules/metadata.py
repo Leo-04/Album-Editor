@@ -97,7 +97,7 @@ def get_track_data_from_filename(file_path: Path | str, index: int = 1) -> Track
         creationflags=0 if os.name != 'nt' else subprocess.CREATE_NO_WINDOW
     )
 
-    tags = []
+    tags = {}
     try:
         string_result = result.stdout.decode("UTF-8")
         json_result = json.loads(string_result)
