@@ -1,5 +1,3 @@
-from PIL import Image
-
 from widgets.style import LIGHT, DARK, SYSTEM
 
 SYSTEM_THEME = SYSTEM + """
@@ -92,25 +90,19 @@ LIGHT_THEME = LIGHT + APP_THEME
 DARK_THEME = DARK + APP_THEME
 
 ABOUT = """\
-Version 4.0 (dont ask where the previous 3 are ...)
+Version 2.0
 
-An Open-Source music player written in Python using the command-line ffplay
+An Open-Source music metadata editor
 
-Repo: https://github.com/Leo-04/Music-Player
+Repo: https://github.com/Leo-04/Album-Editor
 
-Made because windows' new media play sucks
-Should be cross-platform, 
-Media controls are not globally hooked on Mac
-Linux code was not fully tested, as have not got a spare linux laptop laying around to test it on
-
-ffplay must be installed separately if not packaged with the music player (at directory `ffmpeg/bin/`)
+ffmpeg must be installed separately
 
 Dependencies:
 - python3
-- tkinter (tcl/tk v9.0)
+- tkinter
 - pillow
-- mutagen
-- ffplay (binary)\
+- ffmpeg + ffprobe (binary)\
 """
 
 MUSIC_EXTS = {
@@ -119,5 +111,3 @@ MUSIC_EXTS = {
     ".nmf", ".ogg, .oga, .mogg", ".opus", ".ra, .rm", ".raw", ".rf64", ".sln", ".tta", ".voc", ".vox", ".wav",
     ".wma", ".wv", ".webm", ".8svx", ".cda"
 }
-
-IMAGE_EXTS = {ex for ex, f in Image.registered_extensions().items() if f in Image.OPEN}

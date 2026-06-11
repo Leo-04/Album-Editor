@@ -121,7 +121,7 @@ def get_track_data_from_filename(file_path: Path | str, index: int = 1) -> Track
             album = tags[tag]
             break
 
-    for tag in ["year", "Year", "date", "Date"]:
+    for tag in ["date", "Date", "year", "Year"]:
         if tag in tags:
             date = tags[tag]
             break
@@ -247,7 +247,7 @@ def save_metadata(filename: str, output: str, image: str | None, track: int, tit
             "-c", "copy",
             "-id3v2_version", "3",
             "-ss", "0",
-            "-t", length,
+            "-t", str(length),
             '-metadata:s:v', "title=Album cover",
             '-metadata:s:v', "comment=Cover (front)",
             "-metadata", "track=" + str(track),
@@ -266,7 +266,7 @@ def save_metadata(filename: str, output: str, image: str | None, track: int, tit
             "-c", "copy",
             "-id3v2_version", "3",
             "-ss", "0",
-            "-t", length,
+            "-t", str(length),
             "-metadata", "track=" + str(track),
             "-metadata", "title=" + str(title),
             "-metadata", "album=" + str(album),
