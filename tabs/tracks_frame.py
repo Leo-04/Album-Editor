@@ -167,11 +167,11 @@ class TracksFrame(Frame):
                     values[IMAGE] = image
                     self.tracks.set(index, tuple(values))
 
-        elif column == TRACK:
+        elif column == TITLE:
             name = askstring("New Name", "New Title of Track:")
             values = list(self.tracks.get(index))
             if name and values is not None:
-                values[TRACK] = name
+                values[TITLE] = name
                 self.tracks.set(index, tuple(values))
 
         elif column == ALBUM:
