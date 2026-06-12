@@ -622,6 +622,8 @@ class ListView(Frame):
     def on_release(self, event: Event, row: int, column: int):
         """Event callback for mouse release"""
 
+        is_dragged = self.drag_frame.winfo_ismapped()
+
         self.drag_frame.withdraw()
         self.after(10, self.drag_frame.withdraw)
 
@@ -632,21 +634,25 @@ class ListView(Frame):
         if dragged_widget is None:
             return
 
-        font = Font(font=self.font)
+        dragged_index = None
+        for frame, labels in self.columns:
+            for i, label in enumerate(labels):
+                if label.winfo_id() == dragged_widget.winfo_id():
+                    dragged_index = self.current_index + i
+                    break
 
-        if self.item_height is None:
-            item_height = font.metrics("linespace") or 0
-        else:
-            item_height = self.item_height
+            if dragged_index is not None:
+                break
 
-        dragged_index = self.current_index + ((dragged_widget.winfo_y() - self.title_height) // item_height)
+        if dragged_index is None:
+            return
 
         if self.show_columns and dragged_index < 0:
             dragged_index = 0
 
         if dragged_index >= 0 and len(self) and index < len(self) and 0 <= event.x <= self.winfo_width():
             if index == dragged_index:
-                if not self.drag_frame.winfo_ismapped():
+                if not is_dragged:
                     self.event_generate("<<Selected>>", when="tail", x=column, y=index)
             else:
                 self.event_generate("<<Drag>>", when="tail", x=column, y=index, serial=dragged_index)
